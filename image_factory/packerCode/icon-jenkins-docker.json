@@ -1,0 +1,49 @@
+{
+  "variables": {
+    "projectname": "jenkinsdemo",
+    "package_list": "git curl"
+  },
+  "builders":[
+     {
+       "type": "docker",
+       "image": "jenkins:latest",
+       "commit": "true",
+       "run_command": ["-d", "-i", "-t", "-u", "root", "{{.Image}}", "/bin/bash"],
+       "pull": "true"
+     }
+  ],
+  "provisioners":[
+     {
+        "type":"file",
+        "source":"files/",
+        "destination":"/tmp",
+        "direction":"upload"
+     },
+     {
+        "type":"shell",
+        "inline": [
+           "apt-get update -y",
+           "apt-get upgrade -y",
+           "apt-get install -y {{user `package_list`}}",
+           "rm -Rf /var/lib/apt/lists/*",
+           "apt-get clean"
+        ]
+     },
+     {
+        "type":"shell",
+        "scripts":[
+           "scripts/setup_application.sh"
+        ],
+        "execute_command":"sh '{{ .Path }}'"
+     }
+  ],
+  "post-processors": [
+    [
+      {
+        "type": "docker-tag",
+        "repository":"{{user `projectname`}}",
+        "tag":"latest"
+      }
+    ]
+  ]
+}
