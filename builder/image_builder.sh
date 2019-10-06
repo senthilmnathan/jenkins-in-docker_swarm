@@ -105,7 +105,7 @@ admCredUpdate
 ####################Jenkins Image Build Section####################
 cd ${IMAGE_FACTORY}/image_base/
 pName=$(echo ${ProjectName} | tr '[:upper:]' '[:lower:]')
-docker build --no-cache -t "icon_jenkins_${pName}:latest" . 1>>${IMAGE_FACTORY}/builds/${pName}_build.log 2>>${IMAGE_FACTORY}/builds/${pName}_build.log
+docker build --no-cache -t "jenkins_${pName}:latest" . 1>>${IMAGE_FACTORY}/builds/${pName}_build.log 2>>${IMAGE_FACTORY}/builds/${pName}_build.log
 if [ $? -ne 0 ]
 then
   echo "Image Build Failed"
@@ -115,14 +115,14 @@ fi
 ####################Jenkins Image Build Section####################
 
 ####################Publish Image to Docker Registry####################
-docker tag icon_jenkins_${pName}:latest icondockerregistry.com:5000/icon_jenkins_${pName}
+docker tag jenkins_${pName}:latest icondockerregistry.com:5000/jenkins_${pName}
 if [ $? -ne 0 ]
 then
   echo "Tagging Image to Docker Registry Failed"
   echo "Terminating Execution"
   exit 1
 fi
-docker push icondockerregistry.com:5000/icon_jenkins_${pName}
+docker push icondockerregistry.com:5000/jenkins_${pName}
 if [ $? -ne 0 ]
 then
   echo "Publishing Image in Docker Registry Failed"

@@ -28,5 +28,5 @@ mkdir -p /jenkins/$(echo ${ProjectName} | tr '[:upper:]' '[:lower:]')
 cp -p ${IMAGE_FACTORY}/tfCode/*.tf ${TERRAFORM_HOME}/$(echo ${ProjectName} | tr '[:upper:]' '[:lower:]')
 #Prepare terraform.tfvars file
 
-echo -e "project_name = \"$(echo ${ProjectName} | tr '[:upper:]' '[:lower:]')\"\nimage_name = \"icondockerregistry.com:5000/icon_jenkins_$(echo ${ProjectName} | tr '[:upper:]' '[:lower:]'):latest\"\nweb_interface_port = $(cat ${PROPERTY_FILE} | grep "WebInterfacePort" | awk -F= '{print $NF}')\napi_interface_port = $(cat ${PROPERTY_FILE} | grep "ApiInterfacePort" | awk -F= '{print $NF}')\njenkins_volume = \"/jenkins/$(echo ${ProjectName} | tr '[:upper:]' '[:lower:]')\"" > ${TERRAFORM_HOME}/$(echo ${ProjectName} | tr '[:upper:]' '[:lower:]')/terraform.tfvars
+echo -e "project_name = \"$(echo ${ProjectName} | tr '[:upper:]' '[:lower:]')\"\nimage_name = \"icondockerregistry.com:5000/jenkins_$(echo ${ProjectName} | tr '[:upper:]' '[:lower:]'):latest\"\nweb_interface_port = $(cat ${PROPERTY_FILE} | grep "WebInterfacePort" | awk -F= '{print $NF}')\napi_interface_port = $(cat ${PROPERTY_FILE} | grep "ApiInterfacePort" | awk -F= '{print $NF}')\njenkins_volume = \"/jenkins/$(echo ${ProjectName} | tr '[:upper:]' '[:lower:]')\"" > ${TERRAFORM_HOME}/$(echo ${ProjectName} | tr '[:upper:]' '[:lower:]')/terraform.tfvars
 
