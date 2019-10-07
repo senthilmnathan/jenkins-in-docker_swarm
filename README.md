@@ -30,7 +30,7 @@ This is the first step in creating the Jenkins container. The property file is p
 - Admin user password
 - Contact Email ID
 
-![Properties File](https://github.com/senthilmnathan/jenkins-in-docker_swarm/blob/master/properties_file.png)
+
 
 # Custom Docker Image
 For each Jenkins instance, a custom docker image is created in order to better manage the configurations pertaining to it. The docker image is created by a shell script which reads the property file as input. Using the information from the file, a custom image is created.
