@@ -2,7 +2,7 @@
 
 # Introduction
 
-This page explains in detail, the new dockers based Jenkins instances. The setup comprise of Docker Swarm which manage multiple Jenkins instances as docker services. The docker service themselves are managed programmatically using terraform. The interaction between the IT administrator and the underlying Jenkins containers are only through terraform code which makes API calls to the docker services to manage both the container's state as well as configuration.
+Jenkins has become the go-to tool for any development team and organizations end up managing several jenkins instances in various state of decay. A centrally hosted jenkins infrastructure with a much simpler but tightly controlled configuration will help address some of the shortcomings of desparate jenkins environments. This page explains in detail, a new dockers based Jenkins infrastructure. The setup comprise of Docker Swarm which manage multiple Jenkins instances as docker services. The docker service themselves are managed programmatically using terraform. The interaction between the IT administrator and the underlying Jenkins containers are only through terraform code which makes API calls to the docker services to manage both the container's state as well as configuration.
 
 # Deployment Architecture
 
